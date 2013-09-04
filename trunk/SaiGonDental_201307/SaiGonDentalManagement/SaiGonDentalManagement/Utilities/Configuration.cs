@@ -26,6 +26,14 @@ namespace SaiGonDentalManagement.Utilities
             GlobalVariable.LOG_FILE_PATH = Path.Combine(
                 System.Environment.CurrentDirectory,
                 iniFile[GlobalVariable.SECTION_LOG][GlobalVariable.KEY_FILE_PATH]);
+            // Load Customer Id View
+            GlobalVariable.CUSTOMER_ID_VIEW =
+                iniFile[GlobalVariable.SECTION_APPLICATION]
+                [GlobalVariable.KEY_CUSTOMER_ID_VIEW];
+            // Load Customer Id header
+            GlobalVariable.CUSTOMER_ID_HEADER =
+                iniFile[GlobalVariable.SECTION_APPLICATION]
+                [GlobalVariable.KEY_CUSTOMER_ID_HEADER];
         }
     }
 }

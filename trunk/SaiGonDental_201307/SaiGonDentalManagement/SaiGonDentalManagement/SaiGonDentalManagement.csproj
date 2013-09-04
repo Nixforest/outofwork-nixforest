@@ -65,13 +65,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\AcademicBLO.cs" />
     <Compile Include="BusinessLogic\BranchBLO.cs" />
     <Compile Include="BusinessLogic\CityBLO.cs" />
+    <Compile Include="BusinessLogic\CustomerBLO.cs" />
+    <Compile Include="BusinessLogic\DepartmentBLO.cs" />
     <Compile Include="BusinessLogic\DiseaseBeforeBLO.cs" />
     <Compile Include="BusinessLogic\DistrictBLO.cs" />
     <Compile Include="BusinessLogic\DistrictDetailBLO.cs" />
+    <Compile Include="BusinessLogic\GroupBLO.cs" />
+    <Compile Include="BusinessLogic\GroupDetailBLO.cs" />
     <Compile Include="BusinessLogic\JobBLO.cs" />
     <Compile Include="BusinessLogic\KnowReasonBLO.cs" />
+    <Compile Include="BusinessLogic\RuleBLO.cs" />
     <Compile Include="BusinessLogic\StreetBLO.cs" />
     <Compile Include="BusinessLogic\TreatmentPlanBLO.cs" />
     <Compile Include="BusinessLogic\WardBLO.cs" />

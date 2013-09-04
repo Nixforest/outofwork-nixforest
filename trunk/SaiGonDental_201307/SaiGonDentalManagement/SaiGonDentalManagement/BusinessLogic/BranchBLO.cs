@@ -92,18 +92,10 @@ namespace SaiGonDentalManagement.BusinessLogic
                     new StackTrace(new StackFrame(true)));
                 throw new Exception(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT);
             }
-            //    && DistrictBLO.IsIdValid(entity.DistrictId)
-            //    && WardBLO.IsIdValid(entity.WardId)
-            //    && StreetBLO.IsIdValid(entity.StreetId))
-            //{
-            //GlobalVariable.DATA_CONTEXT.BRANCHes.InsertOnSubmit(entity);
-            //GlobalVariable.DATA_CONTEXT.SubmitChanges();
+
+            GlobalVariable.DATA_CONTEXT.BRANCHes.InsertOnSubmit(entity);
+            GlobalVariable.DATA_CONTEXT.SubmitChanges();
             return entity.Id;
-            //}
-            //else
-            //{
-            //    throw new Exception(GlobalVariable.INVALID_ID);
-            //}
         }
 
         /// <summary>
@@ -119,47 +111,234 @@ namespace SaiGonDentalManagement.BusinessLogic
         public short Insert(string name, short cityId, short districtId,
             short wardId, short streetId, string addressDetail)
         {
-            if (CityBLO.IsIdValid(cityId)
-                && DistrictBLO.IsIdValid(districtId)
-                && WardBLO.IsIdValid(wardId)
-                && StreetBLO.IsIdValid(streetId))
+            // Check Id of City is valid
+            if (!CityBLO.IsIdValid(cityId))
             {
-                BRANCH entity = new BRANCH();
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_CITY,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_CITY);
+            }
+            // Check Id of District is valid
+            if (!DistrictBLO.IsIdValid(districtId))
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_DISTRICT,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_DISTRICT);
+            }
+            // Check Id of Ward is valid
+            if (!WardBLO.IsIdValid(wardId))
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_WARD,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_WARD);
+            }
+            // Check Id of Street is valid
+            if (!StreetBLO.IsIdValid(streetId))
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_STREET,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_STREET);
+            }
+            // Check Street in District
+            if (!DistrictDetailBLO.IsStreetInDistrict(
+                districtId, streetId))
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT);
+            }
+            BRANCH entity        = new BRANCH();
+            entity.Name          = name;
+            entity.CityId        = cityId;
+            entity.DistrictId    = districtId;
+            entity.WardId        = wardId;
+            entity.StreetId      = streetId;
+            entity.AddressDetail = addressDetail;
+            GlobalVariable.DATA_CONTEXT.BRANCHes.InsertOnSubmit(entity);
+            GlobalVariable.DATA_CONTEXT.SubmitChanges();
+            return entity.Id;
+        }
+
+        /// <summary>
+        /// Update an entity Branch to database.
+        /// </summary>
+        /// <param name="entity">Entity to update</param>
+        /// <exception cref="System.Exception">Throw when entity has an invalid Id</exception>
+        public void Update(BRANCH entity)
+        {
+            if (IsIdValid(entity.Id))
+            {
+                // Check Id of City is valid
+                if (!CityBLO.IsIdValid(entity.CityId))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_CITY,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_CITY);
+                }
+                // Check Id of District is valid
+                if ((entity.DistrictId != null)
+                    && !DistrictBLO.IsIdValid(entity.DistrictId.Value))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_DISTRICT,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_DISTRICT);
+                }
+                // Check Id of Ward is valid
+                if ((entity.WardId != null)
+                    && !WardBLO.IsIdValid(entity.WardId.Value))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_WARD,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_WARD);
+                }
+                // Check Id of Street is valid
+                if ((entity.StreetId != null)
+                    && !StreetBLO.IsIdValid(entity.StreetId.Value))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_STREET,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_STREET);
+                }
+                // Check Street in District
+                if ((entity.StreetId != null)
+                    && (entity.DistrictId != null)
+                    && !DistrictDetailBLO.IsStreetInDistrict(
+                    entity.DistrictId.Value, entity.StreetId.Value))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT);
+                }
+                BRANCH oldEntity        = GlobalVariable.DATA_CONTEXT.BRANCHes.Single(
+                                            record => record.Id == entity.Id);
+                oldEntity.Name          = entity.Name;
+                oldEntity.CityId        = entity.CityId;
+                oldEntity.DistrictId    = entity.DistrictId;
+                oldEntity.WardId        = entity.WardId;
+                oldEntity.StreetId      = entity.StreetId;
+                oldEntity.AddressDetail = entity.AddressDetail;
+                GlobalVariable.DATA_CONTEXT.SubmitChanges();
+            }
+            else
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_BRANCH,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_BRANCH);
+            }
+        }
+
+        /// <summary>
+        /// Update an entity Branch to database.
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <param name="name">Name of Branch</param>
+        /// <param name="cityId">If of City</param>
+        /// <param name="districtId">If of District</param>
+        /// <param name="wardId">If of Ward</param>
+        /// <param name="streetId">If of Street</param>
+        /// <param name="addressDetail">Detail of Address</param>
+        /// <exception cref="System.Exception">Throw when entity has an invalid Id</exception>
+        public void Update(short id, string name, short cityId, short districtId,
+            short wardId, short streetId, string addressDetail)
+        {
+            if (IsIdValid(id))
+            {
+                // Check Id of City is valid
+                if (!CityBLO.IsIdValid(cityId))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_CITY,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_CITY);
+                }
+                // Check Id of District is valid
+                if (!DistrictBLO.IsIdValid(districtId))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_DISTRICT,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_DISTRICT);
+                }
+                // Check Id of Ward is valid
+                if (!WardBLO.IsIdValid(wardId))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_WARD,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_WARD);
+                }
+                // Check Id of Street is valid
+                if (!StreetBLO.IsIdValid(streetId))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_STREET,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_STREET);
+                }
+                // Check Street in District
+                if (!DistrictDetailBLO.IsStreetInDistrict(
+                    districtId, streetId))
+                {
+                    LogManagement.WriteMessage(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT,
+                        new StackTrace(new StackFrame(true)));
+                    throw new Exception(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT);
+                }
+                BRANCH entity        = new BRANCH();
                 entity.Name          = name;
                 entity.CityId        = cityId;
                 entity.DistrictId    = districtId;
                 entity.WardId        = wardId;
                 entity.StreetId      = streetId;
                 entity.AddressDetail = addressDetail;
-                GlobalVariable.DATA_CONTEXT.BRANCHes.InsertOnSubmit(entity);
-                GlobalVariable.DATA_CONTEXT.SubmitChanges();
-                return entity.Id;
+                Update(entity);
             }
             else
             {
-                throw new Exception(GlobalVariable.INVALID_ID);
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_BRANCH,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_BRANCH);
             }
         }
 
         /// <summary>
-        /// Update an entity Treatment Plan to database.
+        /// Delete an entity.
         /// </summary>
-        /// <param name="entity">Entity to update</param>
+        /// <param name="id">Id of entity to delete</param>
         /// <exception cref="System.Exception">Throw when entity has an invalid Id</exception>
-        public void Update(TREATMENTPLAN entity)
+        public void Delete(short id)
         {
-            //if (IsIdValid(entity.Id))
-            //{
-            //    TREATMENTPLAN oldEntity =
-            //        GlobalVariable.DATA_CONTEXT.TREATMENTPLANs.Single(record => record.Id == entity.Id);
-            //    oldEntity.Name = entity.Name;
-            //    oldEntity.Detail = entity.Detail;
-            //    GlobalVariable.DATA_CONTEXT.SubmitChanges();
-            //}
-            //else
-            //{
-            //    throw new Exception(GlobalVariable.INVALID_ID);
-            //}
+            if (IsIdValid(id))
+            {
+                var entities = from record in GlobalVariable.DATA_CONTEXT.BRANCHes
+                               where record.Id.Equals(id)
+                               select record;
+                GlobalVariable.DATA_CONTEXT.BRANCHes.DeleteAllOnSubmit(entities);
+                GlobalVariable.DATA_CONTEXT.SubmitChanges();
+            }
+            else
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_BRANCH,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_BRANCH);
+            }
+        }
+
+        /// <summary>
+        /// Get a row.
+        /// </summary>
+        /// <param name="id">Id of Branch</param>
+        /// <returns>BRANCH object</returns>
+        public BRANCH GetARow(short id)
+        {
+            if (IsIdValid(id))
+            {
+                var entities = from record in GlobalVariable.DATA_CONTEXT.BRANCHes
+                               where record.Id.Equals(id)
+                               select record;
+                return entities.Single();
+            }
+            else
+            {
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_BRANCH,
+                    new StackTrace(new StackFrame(true)));
+                throw new Exception(GlobalVariable.INVALID_ID_BRANCH);
+            }
         }
 
         /// <summary>

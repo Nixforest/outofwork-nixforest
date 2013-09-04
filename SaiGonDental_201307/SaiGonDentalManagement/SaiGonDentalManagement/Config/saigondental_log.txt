@@ -1,0 +1,8 @@
+[2013/08/24 21:13:37 ][sdfsf                                             ][fsdfdsf                                           ][     1]sdfsdfdsf
+[2013/08/24 21:14:23 ][sdfsf                                             ][fsdfdsf                                           ][     1]sdfsdfdsf
+[2013/08/24 21:29:46 ][D:\SubVersion\SaiGonDental_201306\PhongKhamManagement\PhongKhamManagement\Utilities\LogManagement.cs][WriteMessage                                      ][    79]asdfsf
+[2013/08/24 21:32:33 ][D:\SubVersion\SaiGonDental_201306\PhongKhamManagement\PhongKhamManagement\Program.cs][Main                                              ][    37]asdfsf
+[2013/08/24 21:33:24 ][Program.cs                                        ][Main                                              ][    37]asdfsf
+[2013/08/24 21:42:38 ][Program.cs                                        ][Main                                              ][    37]asdfsf
+[2013/08/24 21:45:11 ][Program.cs                                        ][Main                                              ][    37]asdfsf
+[2013/08/24 21:45:39 ][Program.cs                                        ][Main                                              ][    37] asdfsf

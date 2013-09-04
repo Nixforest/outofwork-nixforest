@@ -9,94 +9,94 @@ using System.Diagnostics;
 namespace SaiGonDentalManagement.BusinessLogic
 {
     /// <summary>
-    /// Business logic class for Job object.
+    /// Business logic class for Academic object.
     /// </summary>
-    public class JobBLO
+    public class AcademicBLO
     {
         /// <summary>
         /// Instance of class
         /// </summary>
-        private static JobBLO instance;
+        private static AcademicBLO instance;
 
         /// <summary>
         /// Get instance of class - Singleton Pattern
         /// </summary>
         /// <returns>Instance of class</returns>
-        public static JobBLO Instance
+        public static AcademicBLO Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new JobBLO();
+                    instance = new AcademicBLO();
                 }
-                return JobBLO.instance;
+                return AcademicBLO.instance;
             }
         }
 
         #region Default Methods
         /// <summary>
-        /// Get all rows in Job table.
+        /// Get all rows in Academic table.
         /// </summary>
-        /// <returns>List of Job object</returns>
-        public List<JOB> GetAllRows()
+        /// <returns>List of Academic object</returns>
+        public List<ACADEMIC> GetAllRows()
         {
-            return GlobalVariable.DATA_CONTEXT.JOBs.ToList();
+            return GlobalVariable.DATA_CONTEXT.ACADEMICs.ToList();
         }
 
         /// <summary>
-        /// Insert an entity Job to database.
+        /// Insert an entity Academic to database.
         /// </summary>
         /// <param name="entity">Entity to insert</param>
         /// <returns>Id of insert row</returns>
-        public short Insert(JOB entity)
+        public short Insert(ACADEMIC entity)
         {
-            GlobalVariable.DATA_CONTEXT.JOBs.InsertOnSubmit(entity);
+            GlobalVariable.DATA_CONTEXT.ACADEMICs.InsertOnSubmit(entity);
             GlobalVariable.DATA_CONTEXT.SubmitChanges();
             return entity.Id;
         }
 
         /// <summary>
-        /// Insert an entity Job to database.
+        /// Insert an entity Academic to database.
         /// </summary>
-        /// <param name="name">Name of Job</param>
+        /// <param name="name">Name of Academic</param>
         /// <param name="detail">Detail</param>
         /// <returns>Id of insert row</returns>
         public short Insert(string name, string detail)
         {
-            JOB entity    = new JOB();
-            entity.Name   = name;
-            entity.Detail = detail;
-            GlobalVariable.DATA_CONTEXT.JOBs.InsertOnSubmit(entity);
+            ACADEMIC entity = new ACADEMIC();
+            entity.Name     = name;
+            entity.Detail   = detail;
+            GlobalVariable.DATA_CONTEXT.ACADEMICs.InsertOnSubmit(entity);
             GlobalVariable.DATA_CONTEXT.SubmitChanges();
             return entity.Id;
         }
 
         /// <summary>
-        /// Update an entity Job to database.
+        /// Update an entity Academic to database.
         /// </summary>
         /// <param name="entity">Entity to update</param>
         /// <exception cref="System.Exception">Throw when entity has an invalid Id</exception>
-        public void Update(JOB entity)
+        public void Update(ACADEMIC entity)
         {
             if (IsIdValid(entity.Id))
             {
-                JOB oldEntity    = GlobalVariable.DATA_CONTEXT.JOBs.Single(
-                                    record => record.Id == entity.Id);
-                oldEntity.Name   = entity.Name;
-                oldEntity.Detail = entity.Detail;
+                ACADEMIC oldEntity = GlobalVariable.DATA_CONTEXT.ACADEMICs.Single(
+                                        record => record.Id == entity.Id);
+                oldEntity.Name     = entity.Name;
+                oldEntity.Detail   = entity.Detail;
                 GlobalVariable.DATA_CONTEXT.SubmitChanges();
             }
             else
             {
-                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_JOB,
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_ACADEMIC,
                     new StackTrace(new StackFrame(true)));
-                throw new Exception(GlobalVariable.INVALID_ID_JOB);
+                throw new Exception(GlobalVariable.INVALID_ID_ACADEMIC);
             }
         }
 
         /// <summary>
-        /// Update an entity Job to database.
+        /// Update an entity Academic to database.
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="name">Name</param>
@@ -106,17 +106,17 @@ namespace SaiGonDentalManagement.BusinessLogic
         {
             if (IsIdValid(id))
             {
-                JOB entity    = new JOB();
-                entity.Id     = id;
-                entity.Name   = name;
-                entity.Detail = detail;
+                ACADEMIC entity = new ACADEMIC();
+                entity.Id       = id;
+                entity.Name     = name;
+                entity.Detail   = detail;
                 Update(entity);
             }
             else
             {
-                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_JOB,
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_ACADEMIC,
                     new StackTrace(new StackFrame(true)));
-                throw new Exception(GlobalVariable.INVALID_ID_JOB);
+                throw new Exception(GlobalVariable.INVALID_ID_ACADEMIC);
             }
         }
 
@@ -129,39 +129,39 @@ namespace SaiGonDentalManagement.BusinessLogic
         {
             if (IsIdValid(id))
             {
-                var entities = from record in GlobalVariable.DATA_CONTEXT.JOBs
+                var entities = from record in GlobalVariable.DATA_CONTEXT.ACADEMICs
                                where record.Id.Equals(id)
                                select record;
-                GlobalVariable.DATA_CONTEXT.JOBs.DeleteAllOnSubmit(entities);
+                GlobalVariable.DATA_CONTEXT.ACADEMICs.DeleteAllOnSubmit(entities);
                 GlobalVariable.DATA_CONTEXT.SubmitChanges();
             }
             else
             {
-                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_JOB,
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_ACADEMIC,
                     new StackTrace(new StackFrame(true)));
-                throw new Exception(GlobalVariable.INVALID_ID_JOB);
+                throw new Exception(GlobalVariable.INVALID_ID_ACADEMIC);
             }
         }
 
         /// <summary>
         /// Get a row.
         /// </summary>
-        /// <param name="id">Id of Job</param>
-        /// <returns>JOB object</returns>
-        public JOB GetARow(short id)
+        /// <param name="id">Id of Academic</param>
+        /// <returns>ACADEMIC object</returns>
+        public ACADEMIC GetARow(short id)
         {
             if (IsIdValid(id))
             {
-                var entities = from record in GlobalVariable.DATA_CONTEXT.JOBs
+                var entities = from record in GlobalVariable.DATA_CONTEXT.ACADEMICs
                                where record.Id.Equals(id)
                                select record;
                 return entities.Single();
             }
             else
             {
-                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_JOB,
+                LogManagement.WriteMessage(GlobalVariable.INVALID_ID_ACADEMIC,
                     new StackTrace(new StackFrame(true)));
-                throw new Exception(GlobalVariable.INVALID_ID_JOB);
+                throw new Exception(GlobalVariable.INVALID_ID_ACADEMIC);
             }
         }
 
@@ -172,9 +172,9 @@ namespace SaiGonDentalManagement.BusinessLogic
         /// <returns>True if Id is valid, false otherwise</returns>
         public static bool IsIdValid(short id)
         {
-            if (GlobalVariable.DATA_CONTEXT.JOBs.Count() > 0)
+            if (GlobalVariable.DATA_CONTEXT.ACADEMICs.Count() > 0)
             {
-                foreach (JOB item in GlobalVariable.DATA_CONTEXT.JOBs)
+                foreach (ACADEMIC item in GlobalVariable.DATA_CONTEXT.ACADEMICs)
                 {
                     if (item.Id.Equals(id))
                     {

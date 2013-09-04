@@ -44,6 +44,21 @@ namespace SaiGonDentalManagement.Utilities
         public static string KEY_FILE_PATH = "FilePath";
 
         /// <summary>
+        /// Application section name
+        /// </summary>
+        public static string SECTION_APPLICATION = "Application";
+
+        /// <summary>
+        /// Customer Id View key
+        /// </summary>
+        public static string KEY_CUSTOMER_ID_VIEW = "CustomerIDView";
+        
+        /// <summary>
+        /// Customer Id Header
+        /// </summary>
+        public static string KEY_CUSTOMER_ID_HEADER = "CustomerIdHeader";
+
+        /// <summary>
         /// Date time format to log file
         /// </summary>
         public static string DATE_TIME_FORMAT = "{0:yyyy/MM/dd HH:mm:ss}";
@@ -121,6 +136,36 @@ namespace SaiGonDentalManagement.Utilities
         public static string INVALID_ID_STREET_NOT_IN_DISTRICT = "Id of Street is invalid: Not in District";
 
         /// <summary>
+        /// String: Id of Academic is invalid
+        /// </summary>
+        public static string INVALID_ID_ACADEMIC = "Id of Academic is invalid";
+
+        /// <summary>
+        /// String: Id of Department is invalid
+        /// </summary>
+        public static string INVALID_ID_DEPARTMENT = "Id of Department is invalid";
+
+        /// <summary>
+        /// String: Id of Group is invalid
+        /// </summary>
+        public static string INVALID_ID_GROUP = "Id of Group is invalid";
+
+        /// <summary>
+        /// String: Id of Rule is invalid
+        /// </summary>
+        public static string INVALID_ID_RULE = "Id of Rule is invalid";
+
+        /// <summary>
+        /// String: Id of Group Detail is invalid
+        /// </summary>
+        public static string INVALID_ID_GROUP_DETAIL = "Id of Group Detail is invalid";
+
+        /// <summary>
+        /// String: Id of Customer is invalid
+        /// </summary>
+        public static string INVALID_ID_CUSTOMER = "Id of Customer is invalid";
+
+        /// <summary>
         /// Load config file error
         /// </summary>
         public static string ERR_LOAD_CONFIG_FILE = "Load configuration file error";
@@ -139,6 +184,18 @@ namespace SaiGonDentalManagement.Utilities
         /// Load log file error: Path too long
         /// </summary>
         public static string ERR_LOAD_LOG_FILE_PATH_TOO_LONG = "Load configuration file error: Path too long";
+
+        /// <summary>
+        /// Id of Customer Header
+        /// BN + YYMMDD + View
+        /// </summary>
+        public static string CUSTOMER_ID_HEADER = "BN";
+
+        /// <summary>
+        /// Id of Customer View
+        /// BN + YYMMDD + View
+        /// </summary>
+        public static string CUSTOMER_ID_VIEW = "0";
         #endregion
     }
 }

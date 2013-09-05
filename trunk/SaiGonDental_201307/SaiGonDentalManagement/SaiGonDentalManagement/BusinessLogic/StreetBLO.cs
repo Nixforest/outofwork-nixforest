@@ -14,12 +14,12 @@ namespace SaiGonDentalManagement.BusinessLogic
     public class StreetBLO
     {
         /// <summary>
-        /// Instance of class
+        /// Instance of class.
         /// </summary>
         private static StreetBLO instance;
 
         /// <summary>
-        /// Get instance of class - Singleton Pattern
+        /// Get instance of class - Singleton Pattern.
         /// </summary>
         /// <returns>Instance of class</returns>
         public static StreetBLO Instance

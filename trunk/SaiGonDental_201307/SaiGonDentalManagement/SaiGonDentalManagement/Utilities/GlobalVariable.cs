@@ -66,7 +66,7 @@ namespace SaiGonDentalManagement.Utilities
         /// <summary>
         /// Log content format
         /// </summary>
-        public static string LOG_CONTENT_FORMAT = "[{0, -20}][{1, -50}][{2, -50}][{3, 6}] {4}";
+        public static string LOG_CONTENT_FORMAT = "[{0, -19}][{1, -50}][{2, -50}][{3, 6}] {4}";
         #endregion
 
         #region Global String
@@ -161,29 +161,49 @@ namespace SaiGonDentalManagement.Utilities
         public static string INVALID_ID_GROUP_DETAIL = "Id of Group Detail is invalid";
 
         /// <summary>
+        /// String: Id of Know Reason Detail is invalid
+        /// </summary>
+        public static string INVALID_ID_KNOW_REASON_DETAIL = "Id of Know Reason Detail is invalid";
+
+        /// <summary>
         /// String: Id of Customer is invalid
         /// </summary>
         public static string INVALID_ID_CUSTOMER = "Id of Customer is invalid";
 
         /// <summary>
-        /// Load config file error
+        /// String: Load config file error
         /// </summary>
         public static string ERR_LOAD_CONFIG_FILE = "Load configuration file error";
         
         /// <summary>
-        /// Load log file error: Unanthorized
+        /// String: Load log file error: Unanthorized
         /// </summary>
         public static string ERR_LOAD_LOG_FILE_UNAUTHORIZED = "Load configuration file error: Can not access";
         
         /// <summary>
-        /// Load log file error: Directory not found
+        /// String: Load log file error: Directory not found
         /// </summary>
         public static string ERR_LOAD_LOG_FILE_DIRECTORY_NOT_FOUND = "Load configuration file error: Directory not found";
 
         /// <summary>
-        /// Load log file error: Path too long
+        /// String: Load log file error: Path too long
         /// </summary>
         public static string ERR_LOAD_LOG_FILE_PATH_TOO_LONG = "Load configuration file error: Path too long";
+
+        /// <summary>
+        /// String: Value of [{0}][{1}] in config file is null.
+        /// </summary>
+        public static string ERR_LOAD_CONFIG_FILE_ARGU_NULL_EXCEPTION = "Value of [{0}][{1}] in config file is null.";
+
+        /// <summary>
+        /// String: Value of [{0}][{1}] in config file is not in the correct format.
+        /// </summary>
+        public static string ERR_LOAD_CONFIG_FILE_FORMAT_EXCEPTION = "Value of [{0}][{1}] in config file is not in the correct format.";
+
+        /// <summary>
+        /// String: Value of [{0}][{1}] in config file is not in the correct format.
+        /// </summary>
+        public static string ERR_LOAD_CONFIG_FILE_UINT_OVERFLOW_EXCEPTION = "Value of [{0}][{1}] in config file is represents a number less than 0 or greater than 65535.";
 
         /// <summary>
         /// Id of Customer Header
@@ -192,10 +212,47 @@ namespace SaiGonDentalManagement.Utilities
         public static string CUSTOMER_ID_HEADER = "BN";
 
         /// <summary>
+        /// String: Number of customers in a day is overdue, turn off the program,
+        ///  change the Value of [{0}][{1}] in config file in config file to different value.\n
+        /// Please contact support: [Nixforest21991920@gmail.com/01689908271] 
+        /// </summary>
+        public static string ERR_APP_CUSTOMER_MAXIMUM = "Number of customers in a day is overdue, turn off the program,"
+            + " change the Value of [{0}][{1}] in config file in config file to different value.\n"
+            + "Please contact support: [Nixforest21991920@gmail.com/01689908271]";
+
+        /// <summary>
         /// Id of Customer View
         /// BN + YYMMDD + View
         /// </summary>
-        public static string CUSTOMER_ID_VIEW = "0";
+        public static ushort CUSTOMER_ID_VIEW = 0;
+
+        /// <summary>
+        /// String: Insert a/an {0} object success with id = {1}
+        /// </summary>
+        public static string IFO_INSERT_SUCCESS = "Insert a/an {0} object success with id = {1}";
+
+        /// <summary>
+        /// String: Update a/an {0} object success with id = {1}
+        /// </summary>
+        public static string IFO_UPDATE_SUCCESS = "Update a/an {0} object success with id = {1}";
+
+        /// <summary>
+        /// String: Delete a/an {0} object success with id = {1}
+        /// </summary>
+        public static string IFO_DELETE_SUCCESS = "Delete a/an {0} object success with id = {1}";
+
+        #endregion
+
+        #region Constant
+        /// <summary>
+        /// Tail of class. String: BLO.
+        /// </summary>
+        public const string BLO = "BLO";
+
+        /// <summary>
+        /// String: 0000.
+        /// </summary>
+        public const string FORMAT_CUSTOMER_VIEW = "0000";
         #endregion
     }
 }

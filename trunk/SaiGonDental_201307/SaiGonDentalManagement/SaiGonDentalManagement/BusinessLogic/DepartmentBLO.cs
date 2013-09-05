@@ -14,12 +14,12 @@ namespace SaiGonDentalManagement.BusinessLogic
     public class DepartmentBLO
     {
         /// <summary>
-        /// Instance of class
+        /// Instance of class.
         /// </summary>
         private static DepartmentBLO instance;
 
         /// <summary>
-        /// Get instance of class - Singleton Pattern
+        /// Get instance of class - Singleton Pattern.
         /// </summary>
         /// <returns>Instance of class</returns>
         public static DepartmentBLO Instance

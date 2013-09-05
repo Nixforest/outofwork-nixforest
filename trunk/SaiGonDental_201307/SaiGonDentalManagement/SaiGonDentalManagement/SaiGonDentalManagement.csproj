@@ -77,6 +77,7 @@
     <Compile Include="BusinessLogic\GroupDetailBLO.cs" />
     <Compile Include="BusinessLogic\JobBLO.cs" />
     <Compile Include="BusinessLogic\KnowReasonBLO.cs" />
+    <Compile Include="BusinessLogic\KnowReasonDetailBLO.cs" />
     <Compile Include="BusinessLogic\RuleBLO.cs" />
     <Compile Include="BusinessLogic\StreetBLO.cs" />
     <Compile Include="BusinessLogic\TreatmentPlanBLO.cs" />

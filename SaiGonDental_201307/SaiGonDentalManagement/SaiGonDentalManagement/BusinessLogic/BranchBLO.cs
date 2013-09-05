@@ -14,12 +14,12 @@ namespace SaiGonDentalManagement.BusinessLogic
     public class BranchBLO
     {
         /// <summary>
-        /// Instance of class
+        /// Instance of class.
         /// </summary>
         private static BranchBLO instance;
 
         /// <summary>
-        /// Get instance of class - Singleton Pattern
+        /// Get instance of class - Singleton Pattern.
         /// </summary>
         /// <returns>Instance of class</returns>
         public static BranchBLO Instance
@@ -280,6 +280,7 @@ namespace SaiGonDentalManagement.BusinessLogic
                     throw new Exception(GlobalVariable.INVALID_ID_STREET_NOT_IN_DISTRICT);
                 }
                 BRANCH entity        = new BRANCH();
+                entity.Id            = id;
                 entity.Name          = name;
                 entity.CityId        = cityId;
                 entity.DistrictId    = districtId;

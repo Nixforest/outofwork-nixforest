@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using SaiGonDentalManagement.Utilities;
 using System.IO;
 using System.Diagnostics;
+using SaiGonDentalManagement.BusinessLogic;
 
 namespace SaiGonDentalManagement
 {

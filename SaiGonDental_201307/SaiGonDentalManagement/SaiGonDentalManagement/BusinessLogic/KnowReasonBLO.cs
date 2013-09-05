@@ -14,12 +14,12 @@ namespace SaiGonDentalManagement.BusinessLogic
     public class KnowReasonBLO
     {
         /// <summary>
-        /// Instance of class
+        /// Instance of class.
         /// </summary>
         private static KnowReasonBLO instance;
 
         /// <summary>
-        /// Get instance of class - Singleton Pattern
+        /// Get instance of class - Singleton Pattern.
         /// </summary>
         /// <returns>Instance of class</returns>
         public static KnowReasonBLO Instance
